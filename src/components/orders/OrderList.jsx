@@ -16,6 +16,7 @@ export default class OrderList extends React.PureComponent {
           </tr>
         </thead>
         <tbody>
+          {orders.length === 0 && <tr>No data</tr>}
           {orders.map(order => {
             return <OrderRow key={order.id} order={order} />;
           })}

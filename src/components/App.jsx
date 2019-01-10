@@ -18,13 +18,16 @@ export default class App extends React.PureComponent {
         orders: result
       });
     });
-  }
+  };
   onRefresh = () => {
-    this.setState({
-      ...this.state,
-      loaded: false,
-    }, this.fetchAllOrders)
-  }
+    this.setState(
+      {
+        ...this.state,
+        loaded: false
+      },
+      this.fetchAllOrders
+    );
+  };
   componentDidMount() {
     this.fetchAllOrders();
   }
@@ -40,12 +43,12 @@ export default class App extends React.PureComponent {
           </div>
           <div className="row">
             <div className="column twelve">
-              {loaded ? (<OrderList orders={orders} />) : (<Loader/>)}
+              <button onClick={() => this.onRefresh()}>Refresh</button>
             </div>
           </div>
           <div className="row">
             <div className="column twelve">
-              <button onClick={() => this.onRefresh()}>Refresh</button>
+              {loaded ? <OrderList orders={orders} /> : <Loader />}
             </div>
           </div>
         </div>

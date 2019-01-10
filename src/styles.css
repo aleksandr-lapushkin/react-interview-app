@@ -1,0 +1,70 @@
+/* Misc */
+html,
+root {
+  width: 100%;
+}
+
+/* Components */
+.App {
+  font-family: sans-serif;
+  width: 100%;
+}
+
+.Loader {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+}
+
+.LoadingSpinner {
+  margin: 8px;
+  width: 40px;
+  height: 40px;
+  border-top: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+  border-left: 2px solid rgba(0, 0, 0, 0);
+  border-radius: 50px 50px 50px 50px;
+  animation: LoadingSpinnerAnimation;
+  animation-timing-function: linear;
+  animation-duration: 600ms;
+  animation-iteration-count: infinite;
+}
+
+@keyframes LoadingSpinnerAnimation {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  100% {
+    transform: rotateZ(360deg);
+  }
+}
+
+/* OrderList */
+.OrderList {
+  border-collapse: collapse;
+}
+/**/
+
+/* OrderRow */
+.OrderRow {
+  cursor: pointer;
+  transition-duration: 300ms;
+}
+
+.OrderRow td {
+  padding: 1em;
+}
+
+.OrderRow:hover {
+  background: #eee;
+}
+/**/
+
+/* Utils */
+.centered {
+  text-align: center;
+}

@@ -1,3 +1,4 @@
 import OrderList from "./OrderList";
+import Order from "./Order";
 
-export { OrderList };
+export { OrderList, Order };

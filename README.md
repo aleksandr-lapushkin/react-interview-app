@@ -10,10 +10,13 @@ The app currently has the following functionality:
 - Refresh all orders
 - A non-working order creation form (no connection to backend)
 
-Your goal is to:
+# Goals
 - Finish the order creation functionality
 - [Optional] Add order update functionality
 - [Optional] Anything else that comes to mind
+
+You are time-limited to 40 minutes. Remaining time will be used to discuss your implementation and challenges.
+You are free to use any documentation you might need.
 
 # Service API
 
@@ -68,7 +71,7 @@ JSON request payload format:
 - title (string)
 - status (enum)
 
-Updaet an existing Order
+Update an existing Order
 
 Example request payload:
 ```

@@ -7,26 +7,28 @@ export default class Order extends React.PureComponent {
   render() {
     return (
       <div>
-
         <div className="row">
-            <Link to="/">
-                <button>Home</button>
-            </Link>
-            <button className="button-primary">Save</button>
+          <Link to="/">
+            <button>Home</button>
+          </Link>
+          <button className="button-primary">Save</button>
         </div>
-        
+
         <form>
           <div className="row u-full-width">
             <div className="columns six">
               <label htmlFor="title">Title</label>
-              <input className="u-full-width" id="title" type="text" required/>
+              <input className="u-full-width" id="title" type="text" required />
             </div>
 
             <div className="columns six">
               <label htmlFor="status">Status</label>
               <select className="u-full-width" id="status" required>
-                {Object.keys(Orders.Status)
-                    .map(status => <option key={status} value={status}>{status}</option>)}
+                {Object.keys(Orders.Status).map(status => (
+                  <option key={status} value={status}>
+                    {status}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

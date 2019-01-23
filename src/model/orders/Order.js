@@ -7,9 +7,6 @@ export default class Order {
     this.status = status;
   }
   static fromJson = json => {
-    if (!json.id || !json.title || !OrderStatus[json.status]) {
-      console.warn("Order shape is not correct: " + json);
-    }
-    return new Order(json.id, json.title, OrderStatus[json.status]);
+    return new Order(json.id, json.title, json.status);
   };
 }

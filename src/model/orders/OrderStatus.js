@@ -1,9 +1,9 @@
 const OrderStatus = Object.freeze({
-  SUBMITTED: "submitted",
-  PROCESSING: "processing",
-  IN_TRANSIT: "in transit",
-  DELIVERED: "delivered",
-  CANCELLED: "cancelled"
+  SUBMITTED: "SUBMITTED",
+  PROCESSING: "PROCESSING",
+  IN_TRANSIT: "IN_TRANSIT",
+  DELIVERED: "DELIVERED",
+  CANCELLED: "CANCELLED"
 });
 
 export default OrderStatus;

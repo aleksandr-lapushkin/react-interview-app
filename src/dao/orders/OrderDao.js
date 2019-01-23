@@ -1,12 +1,19 @@
 import { Orders } from "../../model";
 
 export default class OrderDao {
+  constructor(axiosInstance) {
+    this.axios = axiosInstance;
+  }
   fetchAll = () => {
     console.info("Fetching All Orders");
-    return fetch("https://4389818d.ngrok.io/orders/")
-      .then(result => result.json())
-      .then(orders => {
-        return orders.map(o => Orders.Order.fromJson(o));
+    return this.axios.get('/orders')
+      .then(response => {
+        return response.data.map(o => Orders.Order.fromJson(o));
       });
   };
+
+  saveOrder = (title, status) => {
+    //TODO: implement and test
+    console.info("Saving order");
+  }
 }

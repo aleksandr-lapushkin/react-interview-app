@@ -4,16 +4,21 @@ import { OrderDaos } from "../dao";
 import Loader from "./Loader";
 import { Link, Route } from "react-router-dom";
 import { Order } from "./orders";
+import axios from "axios";
 
-const orderDao = new OrderDaos.OrderDao();
+const axiosInstance = axios.create({
+  baseURL: "https://c098da06.ngrok.io",
+  timeout: 1000
+});
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { orders: [], loaded: false };
+    this.orderDao = new OrderDaos.OrderDao(axiosInstance);
   }
   fetchAllOrders = () => {
-    orderDao.fetchAll().then(result => {
+    this.orderDao.fetchAll().then(result => {
       this.setState({
         loaded: true,
         orders: result

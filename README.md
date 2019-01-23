@@ -14,11 +14,11 @@ The app currently has the following functionality:
 
 # Goals
 
-- Finish the order creation functionality
+- Finish the order creation functionality with tests at least for the DAO
 - [Optional] Add order update functionality
 - [Optional] Anything else that comes to mind
 
-You are time-limited to 40 minutes. Remaining time will be used to discuss your implementation and challenges.
+You are time-limited to ~40 minutes. Remaining time will be used to discuss your implementation and challenges.
 You are free to use any documentation you might need.
 
 # Service API

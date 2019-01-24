@@ -1,5 +1,4 @@
 import OrderDao from "./OrderDao";
-// import jest from "jest";
 
 test("Fetch All orders", async () => {
   const axiosMock = {};

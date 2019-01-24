@@ -4,21 +4,14 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 export default class Order extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { title: "", status: Orders.Status.PROCESSING };
-  }
-  onTitleChange = title => this.setState({ ...this.state, title });
-  onStatusChange = status => this.setState({ ...this.state, status });
+  onTitleChange = title => console.log("New title ", title);
+  onStatusChange = status => console.log("New status ", status);
   saveOrder = () => {
     //TODO: implement
     console.log("Saving");
-    console.log(this.state);
   };
 
   render() {
-    const { title, status } = this.state;
-
     return (
       <div>
         <div className="row">
@@ -40,7 +33,6 @@ export default class Order extends React.PureComponent {
                 type="text"
                 required
                 placeholder="Enter title..."
-                value={title}
                 onChange={e => this.onTitleChange(e.target.value)}
               />
             </div>
@@ -51,7 +43,6 @@ export default class Order extends React.PureComponent {
                 className="u-full-width"
                 id="status"
                 required
-                value={status}
                 onChange={e => this.onStatusChange(e.target.value)}
               >
                 {Object.keys(Orders.Status).map(status => (

@@ -5,9 +5,9 @@ export default class OrderRow extends React.PureComponent {
     const { order } = this.props;
     return (
       <tr className="OrderRow">
-        <td>{order.id}</td>
-        <td>{order.title}</td>
-        <td>{order.status}</td>
+        <td className="order-id">{order.id}</td>
+        <td className="order-title">{order.title}</td>
+        <td className="order-status">{order.status}</td>
       </tr>
     );
   }

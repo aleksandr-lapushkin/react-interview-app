@@ -3,16 +3,15 @@ import { OrderList } from "./orders";
 import Loader from "./Loader";
 import { Link, Route } from "react-router-dom";
 import { Order } from "./orders";
-import axios from "axios";
+import { ordersDao } from "../clients";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = { orders: [], loaded: false };
-    this.orderDao = props.orderDao;
   }
   fetchAllOrders = () => {
-    this.orderDao.fetchAll().then(result => {
+    ordersDao.fetchAll().then(result => {
       this.setState({
         loaded: true,
         orders: result

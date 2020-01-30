@@ -1,18 +1,19 @@
 import OrderDao from "./OrderDao";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
 
-test("Fetch All orders", async () => {
-  const axiosMock = {};
-  const orderDao = new OrderDao(axiosMock);
-  const mockGet = jest.fn(() => {
-    return Promise.resolve({
-      status: 200,
-      data: [{ id: 0, title: "test", status: "PROCESSING" }]
-    });
+describe("OrdersDao", () => {
+  const axiosInstance = axios.create();
+  const axiosMock = new MockAdapter(axiosInstance);
+
+  test("Fetch All orders", async () => {
+    const orderDao = new OrderDao(axiosInstance);
+    axiosMock
+      .onGet("/api/orders")
+      .reply(200, [{ id: 0, title: "test", status: "PROCESSING" }]);
+
+    const result = await orderDao.fetchAll();
+
+    expect(result).toEqual([{ id: 0, title: "test", status: "PROCESSING" }]);
   });
-  axiosMock.get = mockGet;
-
-  const result = await orderDao.fetchAll();
-
-  expect(result).toEqual([{ id: 0, title: "test", status: "PROCESSING" }]);
-  expect(mockGet.mock.calls.length).toBe(1);
 });

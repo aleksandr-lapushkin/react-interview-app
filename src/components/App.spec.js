@@ -7,6 +7,12 @@ import { configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import { MemoryRouter } from "react-router-dom";
 
+jest.mock("../dao", () => {
+  OrderDao: {
+    fetchAll: () => new Promise();
+  }
+});
+
 configure({ adapter: new Adapter() });
 
 test("Should render a loading view", () => {
@@ -17,7 +23,7 @@ test("Should render a loading view", () => {
   };
   const app = mount(
     <MemoryRouter>
-      <App orderDao={orderDaoMock} />
+      <App />
     </MemoryRouter>
   );
   expect(app.find(Loader).length).toEqual(1);
@@ -50,9 +56,7 @@ test("Should render a view with 1 Order", async () => {
   expect(app.find(Loader).length).toEqual(1);
 
   //Trigger update and await
-  await resolveReference([
-    { id: 0, title: "hello", status: "PROCESSING" }
-  ]);
+  await resolveReference([{ id: 0, title: "hello", status: "PROCESSING" }]);
 
   //Verify changes happened
   expect(

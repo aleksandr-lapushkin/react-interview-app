@@ -23,7 +23,7 @@ You are free to use any documentation you might need.
 
 # Service API
 
-## GET /orders
+## GET /api/orders
 
 Returns a JSON array of Orders
 Example:
@@ -36,7 +36,7 @@ GET /orders
 ]
 ```
 
-## GET /orders/:id
+## GET /api/orders/:id
 
 Path params:
 
@@ -56,7 +56,7 @@ HTTP Statuses:
 - 404 NOT FOUND
   Error response format: `{error: "This is an error message"}`
 
-## POST /orders
+## POST /api/orders
 
 JSON request payload format:
 
@@ -78,7 +78,7 @@ HTTP Statuses:
 - 400 BAD REQUEST
   Error response format: `{error: "This is an error message"}`
 
-## POST /orders:id
+## PUT /api/orders:id
 
 Path params:
 

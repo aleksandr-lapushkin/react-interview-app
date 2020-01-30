@@ -1,71 +1,40 @@
 import React from "react";
-import { mount } from "enzyme";
-import Loader from "./Loader";
-import OrderList from "./orders/OrderList";
 import App from "./App";
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
 import { MemoryRouter } from "react-router-dom";
-
-jest.mock("../dao", () => {
-  OrderDao: {
-    fetchAll: () => new Promise();
+jest.mock("../clients", () => ({
+  ordersDao: {
+    fetchAll: jest.fn()
   }
-});
+}));
+import { ordersDao} from "../clients";
+import {render, wait} from "@testing-library/react";
 
-configure({ adapter: new Adapter() });
+describe("App", () => {
+  test("Should render a loading view", () => {
+    ordersDao.fetchAll = jest.fn().mockReturnValue(new Promise((a, b) => {}))
 
-test("Should render a loading view", () => {
-  const orderDaoMock = {
-    fetchAll: () => {
-      return new Promise(() => {}, () => {});
-    }
-  };
-  const app = mount(
-    <MemoryRouter>
-      <App />
-    </MemoryRouter>
-  );
-  expect(app.find(Loader).length).toEqual(1);
-  app.unmount();
-});
+    const result = render(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+    );
 
-test("Should render a view with 1 Order", async () => {
-  //Set reference to ok callback to invoke it manually later
-  let resolveReference;
-  const promise = new Promise((ok, fail) => {
-    resolveReference = ok;
+    expect(result.getByRole('progressbar')).toBeInTheDocument()
   });
 
-  const orderDaoMock = {
-    fetchAll: () => {
-      console.log("fetching");
-      return promise;
-    }
-  };
+  test("Should render a view with 1 Order", async () => {
+    ordersDao.fetchAll = jest.fn().mockResolvedValue([{ id: 0, title: "hello", status: "PROCESSING" }])
 
-  const app = mount(
-    <MemoryRouter>
-      <App orderDao={orderDaoMock} />
-    </MemoryRouter>
-  );
+    const result = render(
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+    );
 
-  //Verify that initial state is correct
-  expect(app.find(App).state("loaded")).toEqual(false);
-  expect(app.find(OrderList).length).toEqual(0);
-  expect(app.find(Loader).length).toEqual(1);
+    await wait(() => result.getByText("PROCESSING"))
 
-  //Trigger update and await
-  await resolveReference([{ id: 0, title: "hello", status: "PROCESSING" }]);
+    expect(result.getByRole("listitem")).toBeInTheDocument()
+    expect(result.getByRole("listitem")).toHaveTextContent("PROCESSING")
+  });
 
-  //Verify changes happened
-  expect(
-    app
-      .update()
-      .find(App)
-      .state("loaded")
-  ).toEqual(true);
-  expect(app.find(OrderList).length).toEqual(1);
-  expect(app.find(Loader).length).toEqual(0);
-  app.unmount();
-});
+})

@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Order Snapshot matches empty form 1`] = `
+<div>
+  <div>
+    <div
+      class="row"
+    >
+      <a
+        href="/"
+      >
+        <button>
+          Home
+        </button>
+      </a>
+      <button
+        class="button-primary"
+      >
+        Save
+      </button>
+    </div>
+    <form>
+      <div
+        class="row u-full-width"
+      >
+        <div
+          class="columns six"
+        >
+          <label
+            for="title"
+          >
+            Title
+          </label>
+          <input
+            class="u-full-width"
+            id="title"
+            placeholder="Enter title..."
+            required=""
+            type="text"
+          />
+        </div>
+        <div
+          class="columns six"
+        >
+          <label
+            for="status"
+          >
+            Status
+          </label>
+          <select
+            class="u-full-width"
+            id="status"
+            required=""
+          >
+            <option
+              value="SUBMITTED"
+            >
+              SUBMITTED
+            </option>
+            <option
+              value="PROCESSING"
+            >
+              PROCESSING
+            </option>
+            <option
+              value="IN_TRANSIT"
+            >
+              IN_TRANSIT
+            </option>
+            <option
+              value="DELIVERED"
+            >
+              DELIVERED
+            </option>
+            <option
+              value="CANCELLED"
+            >
+              CANCELLED
+            </option>
+          </select>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+`;
